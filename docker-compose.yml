@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  backend:
+    container_name: fast-api-ecompanion
+    build: .
+    image: sellprix-backend
+    networks:
+      - app-network
+    restart: always
+    environment:
+      FRAPPE_URL: ${FRAPPE_URL}
+      FRAPPE_USERNAME: ${FRAPPE_USERNAME}
+      FRAPPE_PASSWORD: ${FRAPPE_PASSWORD}
+    ports:
+      - "8001:8000"
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
