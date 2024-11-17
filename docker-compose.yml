@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   backend:
-    container_name: fast-api-ecompanion
+    container_name: fast-api-sellprix
     build: .
     image: sellprix-backend
     networks:

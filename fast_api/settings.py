@@ -31,12 +31,16 @@ class Settings(BaseSettings):
     # quantity of workers for uvicorn
     workers_count: int = 1
     # Enable uvicorn reloading
-    reload: bool = False
+    reload: bool = True
 
     # Current environment
     environment: str = "dev"
 
     log_level: LogLevel = LogLevel.INFO
+
+    frappe_url: str
+    frappe_username: str
+    frappe_password: str
 
     model_config = SettingsConfigDict(
         env_file=".env",

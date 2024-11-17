@@ -107,12 +107,35 @@ class FrappeClient(object):
 			"docs": frappe.as_json(docs)
 		})
 
+	def update_purchase_status(self, doc_type, doc_name, status):
+		#https://sellprix.erpnext.com/api/method/erpnext.buying.doctype.purchase_order.purchase_order.update_status
+		url = self.url + "/api/method/erpnext.buying.doctype.purchase_order.purchase_order.update_status"
+		# sending as form data
+		data = {
+			"status": status,
+			"name": doc_name
+		}
+		res = self.session.post(url, data=data)
+		return self.post_process(res)
+
+	def update_sales_status(self, doc_type, doc_name, status):
+		#https://sellprix.erpnext.com/api/method/erpnext.selling.doctype.sales_order.sales_order.update_status
+		url = self.url + "/api/method/erpnext.selling.doctype.sales_order.sales_order.update_status"
+		data = {
+            "status": status,
+            "name": doc_name
+        }
+		res = self.session.post(url, data=data)
+		return self.post_process(res)
+
 	def update(self, doc):
 		'''Update a remote document
 
 		:param doc: dict or Document object to be updated remotely. `name` is mandatory for this'''
 		url = self.url + "/api/resource/" + quote(doc.get("doctype")) + "/" + quote(doc.get("name"))
+		print("URL: ", url)
 		res = self.session.put(url, data={"data":json.dumps(doc)})
+		print("Res: ", res)
 		return self.post_process(res)
 
 	def bulk_update(self, docs):

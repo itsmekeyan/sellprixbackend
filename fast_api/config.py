@@ -5,6 +5,6 @@ import os
 load_dotenv()
 
 
-FRAPPE_URL = "http://erpnext-frontend:8080"
-FRAPPE_USERNAME = "Administrator"
-FRAPPE_PASSWORD = "admin"
+FRAPPE_URL = os.getenv("FRAPPE_URL")
+FRAPPE_USERNAME = os.getenv("FRAPPE_USERNAME")
+FRAPPE_PASSWORD = os.getenv("FRAPPE_PASSWORD")
